@@ -15,10 +15,11 @@ public:
         return notes;
     }
 
-    Note add(const std::string &content)
+    Note add(const std::string &title = "", const std::string &content = "")
     {
         Note note;
         note.id = currentId++;
+        note.title = title;
         note.content = content;
 
         notes.push_back(note);
@@ -38,13 +39,22 @@ public:
         return false;
     }
 
-    bool update(int id, const std::string &content)
+    bool update(int id, const std::string &title, const std::string &content)
     {
         for (auto &note : notes)
         {
             if (note.id == id)
             {
-                note.content = content;
+                if (!title.empty())
+                {
+                    note.title = title;
+                }
+
+                if (!content.empty())
+                {
+                    note.content = content;
+                }
+
                 return true;
             }
         }

@@ -4,5 +4,6 @@
 struct Note
 {
     int id;
+    std::string title;
     std::string content;
 };
